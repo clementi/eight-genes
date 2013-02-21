@@ -14,7 +14,7 @@ class TestGenome(unittest.TestCase):
         self.genomeB = Genome([8, 7, 6, 5, 4, 3, 2, 1])
 
     def test_mate(self):
-        child = self.genomeA.mate(self.genomeB);
+        child = self.genomeA.mate(self.genomeB)
         expected_child = Genome([1, 2, 3, 4, 4, 3, 2, 1])
         self.assertEqual(child, expected_child)
 
