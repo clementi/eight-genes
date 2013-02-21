@@ -9,12 +9,16 @@ class Population(object):
             self._generate_initial_members(size)
 
     def _generate_initial_members(self, size):
+        self._members = []
         for i in xrange(size):
             self._members.append(Genome.create())
 
     def get_fittest_pair(self, fitness_function):
         self._members.sort(self._members, fitness_function)
         return self._members[0], self._members[1]
+
+    def size(self):
+        return len(self._members)
 
 
 class Genome(object):

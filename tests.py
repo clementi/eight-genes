@@ -26,7 +26,14 @@ class TestGenome(unittest.TestCase):
 
 
 class TestPopulation(unittest.TestCase):
-    pass
+    def setUp(self):
+        self.random_population = Population()
+
+    def test_init_with_no_parameters(self):
+        self.assertEqual(self.random_population.size(), 50)
+
+    def _fitness_function(self, genome):
+        pass
 
 
 if __name__ == "__main__":
