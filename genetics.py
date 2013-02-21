@@ -3,7 +3,7 @@ import random
 
 class Population(object):
     def __init__(self, members=None, size=50):
-        if members != None:
+        if members is not None:
             self._members = members
         else:
             self._generate_initial_members(size)
@@ -26,8 +26,8 @@ class Genome(object):
         self.solution = solution
 
     def mate(self, other):
-        half_index = len(self.solution) / 2
-        child_solution = self.solution[0:half_index] + other.solution[half_index:]
+        half = len(self.solution) / 2
+        child_solution = self.solution[0:half] + other.solution[half:]
         return Genome(child_solution)
 
     def mutate(self):
