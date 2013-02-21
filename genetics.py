@@ -28,13 +28,15 @@ class Genome(object):
 
     def mutate(self):
         index = random.randint(0, len(self.solution))
-        self.solution[index] = (self.solution[index] + 1) % len(self.solution) + 1
+        self.solution[index] = self.solution[index] + 1
+        if self.solution[index] > 8:
+            self.solution[index] = 1
 
     def __eq__(self, other):
         return self.solution == other.solution
 
     def __str__(self):
-        return self.solution
+        return str(self.solution)
 
     @classmethod
     def create(cls, size=8):

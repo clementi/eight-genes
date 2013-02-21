@@ -4,6 +4,10 @@ from mock import Mock, patch
 from genetics import Genome, Population
 
 
+def fake_randint(a, b):
+    return 0
+
+
 class TestGenome(unittest.TestCase):
     def setUp(self):
         self.genomeA = Genome([1, 2, 3, 4, 5, 6, 7, 8])
@@ -14,12 +18,15 @@ class TestGenome(unittest.TestCase):
         expected_child = Genome([1, 2, 3, 4, 4, 3, 2, 1])
         self.assertEqual(child, expected_child)
 
-    @patch.object(random, 'randint')
+    @patch('random.randint', fake_randint)
     def test_mutate(self):
         expected_mutant = Genome([2, 2, 3, 4, 5, 6, 7, 8])
-        mock_randint.return_value = 0
         self.genomeA.mutate()
-        self.assertEqual(self.genomeA, expected_mutant, expected_mutant)
+        self.assertEqual(self.genomeA, expected_mutant, str(self.genomeA))
+
+
+class TestPopulation(unittest.TestCase):
+    pass
 
 
 if __name__ == "__main__":
