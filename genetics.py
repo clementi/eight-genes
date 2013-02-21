@@ -46,12 +46,3 @@ class Genome(object):
     def create(cls, size=8):
         base_solution = xrange(0, size)
         return Genome(random.sample(base_solution, len(base_solution)))
-
-
-def fitness_function(genome):
-    proposed_solution = genome.solution
-    pass # TODO
-
-
-def main():
-    population = Population()
