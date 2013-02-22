@@ -14,7 +14,8 @@ class Population(object):
             self._members.append(Genome.create())
 
     def get_fittest_pair(self, fitness_function):
-        self._members.sort(self._members, fitness_function)
+        self._members.sort(
+            lambda x, y: fitness_function(y) - fitness_function(x))
         return self._members[0], self._members[1]
 
     def size(self):

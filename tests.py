@@ -26,14 +26,23 @@ class TestGenome(unittest.TestCase):
 
 
 class TestPopulation(unittest.TestCase):
-    def setUp(self):
-        self.random_population = Population()
-
     def test_init_with_no_parameters(self):
-        self.assertEqual(self.random_population.size(), 50)
+        random_population = Population()
+        self.assertEqual(random_population.size(), 50)
+
+    def test_get_fittest_pair(self):
+        population = Population(
+            members=[Genome([1, 2, 3, 4, 5, 6, 7, 8]),
+                     Genome([8, 7, 6, 5, 4, 3, 2, 1]),
+                     Genome([4, 3, 2, 1, 8, 7, 6, 5])])
+        fittest_pair = population.get_fittest_pair(self._fitness_function)
+        expected_fittest_pair = (
+            Genome([8, 7, 6, 5, 4, 3, 2, 1]),
+            Genome([4, 3, 2, 1, 8, 7, 6, 5]))
+        self.assertEqual(fittest_pair, expected_fittest_pair)
 
     def _fitness_function(self, genome):
-        pass
+        return genome.solution[0]
 
 
 if __name__ == "__main__":
