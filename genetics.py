@@ -58,7 +58,7 @@ def fitness_function(genome):
 def count_pairs(genome):
     pair_count = 0
     for i in xrange(len(genome.solution)):
-        for j in genome.solution[i + 1:]:
+        for j in xrange(i + 1, len(genome.solution)):
             if genome.solution[i] == genome.solution[j]:
                 pair_count += 1
     return pair_count
