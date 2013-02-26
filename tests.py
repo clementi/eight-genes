@@ -1,7 +1,7 @@
 import random
 import unittest
 from mock import Mock, patch
-from genetics import Genome, Population
+from genetics import Genome, Population, fitness_function
 
 
 def fake_randint(a, b):
@@ -43,6 +43,20 @@ class TestPopulation(unittest.TestCase):
 
     def _fitness_function(self, genome):
         return genome.solution[0]
+
+
+class TestFitnessFunction(unittest.TestCase):
+    def test_all_same(self):
+        genome = Genome([1, 1, 1, 1, 1, 1, 1, 1])
+        expected_fitness = -28
+        fitness = fitness_function(genome)
+        self.assertEqual(fitness, expected_fitness)
+
+    def test_one_pair(self):
+        genome = Genome([1, 1, 3, 5, 7, 2, 4, 6])
+        expected_fitness = -1
+        fitness = fitness_function(genome)
+        self.assertEqual(fitness, expected_fitness)
 
 
 if __name__ == "__main__":

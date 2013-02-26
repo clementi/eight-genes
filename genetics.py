@@ -47,3 +47,22 @@ class Genome(object):
     def create(cls, size=8):
         base_solution = xrange(0, size)
         return Genome(random.sample(base_solution, len(base_solution)))
+
+
+def fitness_function(genome):
+    pair_count = count_pairs(genome)
+    diagonal_count = count_diagonals(genome)
+    return -(pair_count + diagonal_count)
+
+
+def count_pairs(genome):
+    pair_count = 0
+    for i in xrange(len(genome.solution)):
+        for j in genome.solution[i + 1:]:
+            if genome.solution[i] == genome.solution[j]:
+                pair_count += 1
+    return pair_count
+
+
+def count_diagonals(genome):
+    return 0
